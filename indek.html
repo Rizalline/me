@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Rizal Efendi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --dark-blue: #1a3047;
+            --bg-light: #f4f7f8;
+            --tape-color: rgba(242, 232, 213, 0.85);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #d1d9e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* CONTAINER UTAMA */
+        .resume-container {
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+            perspective: 1800px;
+        }
+
+        /* CARD INNER */
+        .resume-card-inner {
+            width: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+       /* STYLE UMUM UNTUK HALAMAN */
+.card-face {
+    width: 100%;
+    height: 100%; /* Memaksa semua halaman mengikuti tinggi container */
+    background-color: var(--bg-light);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* HALAMAN 1 (Penahan Tinggi Utama) */
+.card-front {
+    position: relative; /* Selalu relative untuk mengunci tinggi kartu */
+    transform: rotateY(0deg);
+}
+
+        /* HALAMAN BELAKANG (HAL 2) */
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(180deg);
+        display: none;
+}
+
+/* HALAMAN 3 */
+.card-page-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(360deg);
+    display: none;
+}
+
+        /* --- MOTIF BATIK TRADISIONAL --- */
+        header, .white-box {
+            position: relative;
+            z-index: 2;
+        }
+
+        .batik-motif {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20,0 C28,8 28,12 20,20 C12,12 12,8 20,0 Z' fill='none' stroke='%231a3047' stroke-width='1' stroke-opacity='0.08'/%3E%3Cpath d='M20,20 C28,28 28,32 20,40 C12,32 12,28 20,20 Z' fill='none' stroke='%231a3047' stroke-width='1' stroke-opacity='0.08'/%3E%3Cpath d='M0,20 C8,28 12,28 20,20 Z' fill='none' stroke='%231a3047' stroke-width='1' stroke-opacity='0.08'/%3E%3Cpath d='M20,20 C28,12 32,12 40,20 C32,28 28,28 20,20 Z' fill='none' stroke='%231a3047' stroke-width='1' stroke-opacity='0.08'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%231a3047' fill-opacity='0.1'/%3E%3Ccircle cx='20' cy='0' r='1' fill='%231a3047' fill-opacity='0.08'/%3E%3Ccircle cx='20' cy='40' r='1' fill='%231a3047' fill-opacity='0.08'/%3E%3Ccircle cx='0' cy='20' r='1' fill='%231a3047' fill-opacity='0.08'/%3E%3Ccircle cx='40' cy='20' r='1' fill='%231a3047' fill-opacity='0.08'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .batik-motif.top-right {
+            top: 0; right: 0;
+            width: 320px; height: 320px;
+            -webkit-mask-image: radial-gradient(circle at top right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+            mask-image: radial-gradient(circle at top right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+        }
+
+        .batik-motif.bottom-right {
+            bottom: 0; right: 0;
+            width: 280px; height: 280px;
+            -webkit-mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+            mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+        }
+
+        /* STYLE TOMBOL SELOTIP KANAN */
+        .tape-button {
+            position: absolute;
+            width: 40px;
+            height: 90px;
+            background: var(--tape-color);
+            backdrop-filter: blur(1px);
+            box-shadow: -3px 4px 10px rgba(0,0,0,0.12), inset 0 0 5px rgba(255,255,255,0.6);
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        /* Penyesuaian Sisi Kanan Visual untuk Semua Halaman */
+.card-front .tape-button,
+.card-back .tape-button,
+.card-page-3 .tape-button {
+    right: -25px;
+    left: auto;
+}
+
+        .card-back .tape-button {
+            left: -25px; /* Karena terbalik 180 deg, left di CSS akan tampil di kanan visual */
+        }
+
+        /* Posisi Vertikal Bertingkat agar tidak bertumpuk */
+        .tape-pos-1 { top: 180px; }
+        .tape-pos-2 { top: 290px; }
+
+        .tape-button::before, .tape-button::after {
+            content: '';
+            position: absolute;
+            left: 0; width: 100%; height: 6px;
+            background-repeat: repeat-x;
+        }
+        .tape-button::before {
+            top: -6px;
+            background-image: linear-gradient(45deg, transparent 50%, var(--tape-color) 50%), linear-gradient(-45deg, transparent 50%, var(--tape-color) 50%);
+            background-size: 6px 6px;
+        }
+        .tape-button::after {
+            bottom: -6px;
+            background-image: linear-gradient(45deg, var(--tape-color) 50%, transparent 50%), linear-gradient(-45deg, var(--tape-color) 50%, transparent 50%);
+            background-size: 6px 6px;
+        }
+
+        .tape-text {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            letter-spacing: 2px;
+            writing-mode: vertical-rl;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .tape-button:hover {
+            transform: scale(1.05);
+            background: rgba(242, 232, 213, 0.95);
+        }
+
+        .top-decoration {
+            position: absolute;
+            top: 20px; right: 20px;
+            width: 80px; height: 80px;
+            border-top: 3px solid var(--dark-blue);
+            border-right: 3px solid var(--dark-blue);
+            z-index: 3;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            padding: 40px 60px 10px 60px;
+            align-items: flex-end;
+            gap: 40px;
+        }
+
+        .photo-container {
+            width: 250px;
+            height: 310px;
+            background: #fff;
+            flex-shrink: 0;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .photo-container img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .name-title h1 {
+            font-size: clamp(30px, 5vw, 52px);
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: 5px;
+        }
+
+        .name-title p {
+            font-size: 16px;
+            letter-spacing: 6px;
+            color: var(--dark-blue);
+            margin: 15px 0 20px 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 12px;
+        }
+
+        .social-links a {
+            color: var(--dark-blue);
+            font-size: 20px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            opacity: 0.75;
+        }
+
+        .half-line {
+            width: 65%;
+            height: 2px;
+            background-color: var(--dark-blue);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .white-box {
+            background: white;
+            margin: 0 40px;
+            border-radius: 30px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        h2 {
+            font-size: 18px;
+            color: var(--dark-blue);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .profile-text {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .name-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mini-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .mini-toggle i {
+            font-size: 9px;
+            color: var(--dark-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .personal-detail {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .contact-subitem {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .contact-subitem:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-subitem i {
+            font-size: 18px;
+            color: var(--dark-blue);
+            width: 25px;
+        }
+
+        .contact-subitem div div { font-size: 11px; font-weight: bold; }
+        .contact-subitem span { font-size: 12px; color: #666; }
+        .personal-detail.show { display: block; }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .contact-item > i {
+            font-size: 18px;
+            color: var(--dark-blue);
+            width: 25px;
+            margin-top: 2px;
+        }
+
+        .contact-info div { font-size: 11px; font-weight: bold; }
+        .contact-info span { font-size: 12px; color: #666; }
+
+        .vertical-line-box {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2.5px solid var(--dark-blue);
+            margin-left: 5px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -28.5px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--dark-blue);
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            font-size: 13px;
+            margin: 0;
+            color: var(--dark-blue);
+            text-transform: uppercase;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0 0 0;
+        }
+
+        .skill-list li {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .bottom-line {
+            position: absolute;
+            bottom: 10px; right: 40px;
+            width: 150px; height: 3px;
+            background: var(--dark-blue);
+            z-index: 3;
+        }
+
+        /* GRID PORTOFOLIO HALAMAN 3 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .project-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin: 0 0 8px 0;
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .tech-tag {
+            font-size: 10px;
+            font-weight: 600;
+            background: #eef2f6;
+            color: var(--dark-blue);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .project-link {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE LAYOUT (HP) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 40px 20px 20px 20px;
+            }
+
+            .photo-container { width: 200px; height: 250px; }
+            .half-line { width: 50%; margin: 0 auto 30px auto; }
+            
+            .white-box {
+                grid-template-columns: 1fr;
+                margin: 0 20px;
+                padding: 30px 20px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .name-title h1 { margin-top: 20px; }
+            .top-decoration { display: none; }
+
+            .batik-motif.top-right { width: 180px; height: 180px; }
+            .batik-motif.bottom-right { width: 150px; height: 150px; }
+
+            .social-links { justify-content: center; }
+
+            .card-front .tape-button,
+            .card-page-3 .tape-button { right: -10px; }
+            .card-back .tape-button { left: -10px; }
+
+            .tape-button { height: 75px; }
+            .tape-pos-1 { top: 15px; }
+            .tape-pos-2 { top: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container" id="resumeContainer">
+        <div class="resume-card-inner">
+            
+            <!-- HALAMAN 1 -->
+            <div class="card-face card-front">
+                <div class="batik-motif top-right"></div>
+                <div class="batik-motif bottom-right"></div>
+                <div class="top-decoration"></div>
+
+                <!-- Tombol Kanan: Buka Halaman 2 -->
+                <div class="tape-button tape-pos-1" onclick="goToPage(2)">
+                    <div class="tape-text">Ke Hal 2</div>
+                </div>
+
+                <header>
+                    <div class="photo-container">
+                        <img src="fotoprofil.png" alt="Foto">
+                    </div>
+                    <div class="name-title">
+                        <h1>RIZAL EFENDI<br></h1>
+                        <p>-</p>
+                        <div class="social-links">
+                            <a href="https://github.com/username" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://linkedin.com/in/username" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://instagram.com/username" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://facebook.com/username" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="half-line"></div>
+
+                <div class="white-box">
+                    <div class="left-col">
+                        <section>
+                            <h2>Profil</h2>
+                            <p class="profile-text">
+                                Mahasiswa Teknik Informatika yang berfokus pada bidang web development dan desain UI/UX. Memiliki minat tinggi untuk mendalami teknologi pemrograman web serta merancang antarmuka aplikasi yang fungsional dan intuitif. Berambisi untuk mengembangkan karier secara profesional sebagai web developer.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>Data Pribadi</h2>
+                            <div class="contact-item">
+                                <i class="fa-solid fa-user"></i>
+                                <div class="contact-info">
+                                    <div class="name-row">
+                                        <div>Nama</div>
+                                        <button class="mini-toggle" onclick="togglePersonal(event)">
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <span>Rizal Efendi</span>
+
+                                    <div id="personal-detail" class="personal-detail">
+                                        <div class="contact-subitem">
+                                            <i class="fa-solid fa-cake-candles"></i>
+                                            <div>
+                                                <div>Tanggal Lahir</div>
+                                                <span>08 Agustus 2005</span>
+                                            </div>
+                                        </div>
+                                       <!-- HALAMAN 1  <div class="contact-subitem">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <div>
+                                                <div>Tempat Lahir</div>
+                                                <span>Pati</span>
+                                            </div>
+                                        </div>
+                                        <div class="contact-subitem">
+                                            <i class="fa-solid fa-venus"></i>
+                                            <div>
+                                                <div>Jenis Kelamin</div>
+                                                <span>Perempuan</span>
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <i class="fa-regular fa-envelope"></i>
+                                <div class="contact-info">
+                                    <div>Email</div>
+                                    <span>rizalline313@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fa-solid fa-phone"></i>
+                                <div class="contact-info">
+                                    <div>Telepon</div>
+                                    <span>+62 888-0268-9233</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <div class="contact-info">
+                                    <div>Alamat</div>
+                                    <span>Grobogan, Jawa Tengah</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="right-col">
+                        <section>
+                            <h2>Pendidikan</h2>
+                            <div class="vertical-line-box">
+                                <div class="timeline-item">
+                                    <h3>SMP NEGERI 2 Tambakromo</h3>
+                                    <p style="font-size: 12px; color: #666; margin: 3px 0;">2017 - 2020</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>SMK Bani Muslim Pati</h3>
+                                    <p style="font-size: 12px; color: #666; margin: 3px 0;">2020 - 2023</p>
+                                    <span style="font-size: 12px; color: #555;">Jurusan Multimedia</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>Universitas PGRI Semarang</h3>
+                                    <p style="font-size: 12px; color: #666; margin: 3px 0;">2023 - Sekarang</p>
+                                    <span style="font-size: 12px; color: #555;">Teknik Informatika</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section style="margin-top: 20px;">
+                            <h2>Keahlian</h2>
+                            <div class="vertical-line-box">
+                                <div class="timeline-item">
+                                    <h3>Pemrograman & Web Development:</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>Bahasa Pemrograman:</strong> HTML, CSS, JavaScript, PHP, Golang, Python</li>
+                                        <li><strong>Framework & Teknologi:</strong> Laravel, RESTful API, MySQL</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>Desain & UI/UX:</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>Software Desain:</strong> Figma, Canva, CorelDRAW</li>
+                                        <li><strong>Keahlian Desain:</strong> Wireframing, Prototyping, UI/UX Design, Tata Letak Visual</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>Penyuntingan & Alat Kerja:</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>Perangkat Lunak:</strong> Git, VS Code, Postman</li>
+                                        <li><strong>Multimedia:</strong> Editing Foto, Editing Video</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>Kemampuan Bahasa:</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>Bahasa Indonesia:</strong> Aktif</li>
+                                        <li><strong>Bahasa Inggris:</strong> Tingkat Dasar</li>
+                                        <li><strong>Bahasa Jepang:</strong> Tingkat Pemula</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="bottom-line"></div>
+            </div>
+
+            <!-- HALAMAN 2 -->
+            <div class="card-face card-back">
+                <div class="batik-motif top-right"></div>
+                <div class="batik-motif bottom-right"></div>
+                <div class="top-decoration"></div>
+
+                <!-- Tombol Kanan Atas: Kembali ke Hal 1 -->
+                <div class="tape-button tape-pos-1" onclick="goToPage(1)">
+                    <div class="tape-text">Ke Hal 1</div>
+                </div>
+
+                <!-- Tombol Kanan Bawah: Lanjut ke Hal 3 -->
+                <div class="tape-button tape-pos-2" onclick="goToPage(3)">
+                    <div class="tape-text">Ke Hal 3</div>
+                </div>
+
+                <header>
+                    <div class="name-title" style="padding-left: 0;">
+                        <h1 style="font-size: 38px;">PENGALAMAN &</h1>
+                        <p style="margin-top: 5px; color: var(--dark-blue);">KEMAMPUAN TAMBAHAN</p>
+                    </div>
+                </header>
+
+                <div class="half-line"></div>
+
+                <div class="white-box">
+                    <div class="left-col">
+                        <section>
+                            <h2>Pengalaman</h2>
+                            <div class="vertical-line-box">
+                                <div class="timeline-item">
+                                    <h3>IT Web Developer (Magang)</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>PDAM Tirta Moedal Kota Semarang<br>Januari 2026 - Maret 2026</strong></li><br>
+                                        <li>● Mengembangkan sistem informasi berbasis web untuk otomatisasi alur pelaporan internal dan pengajuan barang.</li><br>
+                                        <li>● Merancang antarmuka (UI/UX) dan alur pengalaman pengguna agar sistem intuitif, responsif, dan mudah digunakan.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>Finishing & Asisten Desain (Magang)</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>Doriku Digital Printing<br>2022</strong></li><br>
+                                        <li>● Membantu proses penyusunan layout dan desain materi cetak sesuai kebutuhan.</li><br>
+                                        <li>● Menangani proses pengerjaan akhir (finishing) produk cetak dengan ketelitian.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>Penyortir Paket (Daily Worker)</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>MyRobin (Penempatan: DC Shopee Tugu) <br>2026</strong></li><br>
+                                        <li>● Mengelola dan memilah paket berdasarkan wilayah tujuan secara cepat, tepat, dan sesuai target operasional.</li><br>
+                                        <li>● Melatih ketahanan kerja, kedisiplinan waktu, serta fokus tinggi dalam lingkungan kerja cepat.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <h3>Publikasi, Dekorasi, & Dokumentasi (PDD)</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>Kuliah Kerja Nyata (KKN) <br>Juli 2026 - September 2026</strong></li><br>
+                                        <li>● Bertanggung jawab penuh atas visual branding program KKN, termasuk desain poster, konten media sosial, dan banner kegiatan.</li><br>
+                                        <li>● Mengabadikan momen serta melakukan penyuntingan foto dan video (video editing) untuk laporan dan dokumentasi publik.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="right-col">
+                        <section>
+                            <h2>Kemampuan (Soft Skills)</h2>
+                            <div class="vertical-line-box">
+                                <div class="timeline-item">
+                                    <h3>Karakter Profesional</h3>
+                                    <ul class="skill-list">
+                                        <li><strong>Berpikir Kreatif & Inovatif:</strong> Mampu mencari solusi alternatif dalam pemecahan masalah kelompok.</li>
+                                        <li><strong>Kemandirian Kerja:</strong> Mampu mengemban dan menuntaskan tugas secara mandiri dengan tanggung jawab tinggi.</li>
+                                        <li><strong>Semangat Belajar:</strong> Sangat antusias terhadap tantangan dan hal-hal baru.</li>
+                                        <li><strong>Adaptasi Cepat:</strong> Terbiasa dan luwes menyesuaikan diri dengan lingkungan baru secara proaktif.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section style="margin-top: 20px;">
+                            <h2>Visi Kerja</h2>
+                            <p class="profile-text" style="margin-bottom: 0;">
+                                Berkomitmen untuk memberikan dedikasi penuh, kontribusi positif, serta memanfaatkan keterampilan literasi komputer demi mendukung kelancaran operasional administrasi dalam tim.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+                <div class="bottom-line"></div>
+            </div>
+
+            <!-- HALAMAN 3 -->
+            <div class="card-face card-page-3">
+                <div class="batik-motif top-right"></div>
+                <div class="batik-motif bottom-right"></div>
+                <div class="top-decoration"></div>
+
+                <!-- Tombol Kanan Atas: Kembali ke Hal 2 -->
+                <div class="tape-button tape-pos-1" onclick="goToPage(2)">
+                    <div class="tape-text">Ke Hal 2</div>
+                </div>
+
+                <!-- Tombol Kanan Bawah: Kembali ke Hal 1 
+                <div class="tape-button tape-pos-2" onclick="goToPage(1)">
+                    <div class="tape-text">Ke Hal 1</div>
+                </div>-->
+
+                <header>
+                    <div class="name-title" style="padding-left: 0;">
+                        <h1 style="font-size: 38px;">PORTOFOLIO &</h1>
+                        <p style="margin-top: 5px; color: var(--dark-blue);">PROYEK LAINNYA</p>
+                    </div>
+                </header>
+
+                <div class="half-line"></div>
+
+                <div class="white-box" style="grid-template-columns: 1fr;">
+                    <div class="project-grid">
+                        
+                        <!-- Proyek 1 -->
+                        <div class="project-card">
+                            <h3 class="project-title">Website UMKM Dusun Krajan</h3>
+                            <p class="project-desc">Aplikasi web informasi pemetaan dan pengajuan pendataan UMKM di dusun krajan desa bergas kidul.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <a href="https://kknupgris.github.io/umkm-krajan-bergaskidul/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 2 -->
+                        <div class="project-card">
+                            <h3 class="project-title">CatatanKu</h3>
+                            <p class="project-desc">Aplikasi catatan digital sederhana dengan fitur pencarian dan kategori.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">Dart</span>
+                            </div>
+                            <a href="https://github.com/Rizalline/CatatanKu" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 3 -->
+                        <div class="project-card">
+                            <h3 class="project-title">Jelajah Jateng Chatbot</h3>
+                            <p class="project-desc">Website pelayanan informasi wisata di Jawa Tengah.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Streamlit</span>
+                            </div>
+                            <a href="https://jelajahjatengchatbot.streamlit.app/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 4 -->
+                        <div class="project-card">
+                            <h3 class="project-title">BookFloo</h3>
+                            <p class="project-desc">Website untuk mencari dan menemukan buku yang kamu inginkan.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">WordPress</span>
+                                <span class="tech-tag">PHP</span>
+                            </div>
+                            <a href="https://bookfloo.my.id/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 5 -->
+                        <div class="project-card">
+                            <h3 class="project-title">SISTEM INFORMASI GEOGRAFIS</h3>
+                            <p class="project-desc">Website Visualisasi Tingkat Pelaporan Dan Penyelesaian Kasus Kejahatan Di Provinsi Jawa Tengah Tahun 2020–2024.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">QGIS</span>
+                            </div>
+                            <a href="https://sigqgis33.netlify.app/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 6 -->
+                        <div class="project-card">
+                            <h3 class="project-title">SISTEM INFORMASI GEOGRAFIS</h3>
+                            <p class="project-desc">Website Visualisasi Tingkat Pelaporan Dan Penyelesaian Kasus Kejahatan Di Provinsi Jawa Tengah Tahun 2020–2024.</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">QGIS</span>
+                            </div>
+                            <a href="https://sigqgis33.netlify.app/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="bottom-line"></div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+let currentPage = 1;
+let isAnimating = false;
+
+function goToPage(targetPage) {
+    if (currentPage === targetPage || isAnimating) return;
+    isAnimating = true;
+
+    const cardInner = document.querySelector('.resume-card-inner');
+    const page1 = document.querySelector('.card-front');
+    const page2 = document.querySelector('.card-back');
+    const page3 = document.querySelector('.card-page-3');
+
+    // 1. Tampilkan halaman yang terlibat dalam animasi putar
+    if (targetPage === 1) {
+        page1.style.display = "block";
+        page1.style.visibility = "visible";
+        page2.style.display = "block";
+        page3.style.display = "none";
+        cardInner.style.transform = "rotateY(0deg)";
+    } 
+    else if (targetPage === 2) {
+        page1.style.display = "block";
+        page2.style.display = "block";
+        
+        if (currentPage === 1) {
+            page3.style.display = "none";
+        } else {
+            page3.style.display = "block";
+        }
+        
+        cardInner.style.transform = "rotateY(-180deg)";
+    } 
+    else if (targetPage === 3) {
+        page1.style.display = "block";
+        page2.style.display = "block";
+        page3.style.display = "block";
+        cardInner.style.transform = "rotateY(-360deg)";
+    }
+
+    // 2. Kunci tampilan setelah animasi putar selesai (800ms)
+    setTimeout(() => {
+        if (targetPage === 1) {
+            page1.style.visibility = "visible";
+            page2.style.display = "none";
+            page3.style.display = "none";
+        } else if (targetPage === 2) {
+            page1.style.visibility = "hidden"; // Menyembunyikan Hal 1 tapi tetap menahan tinggi
+            page2.style.display = "block";
+            page3.style.display = "none";
+        } else if (targetPage === 3) {
+            page1.style.visibility = "hidden"; // Menyembunyikan Hal 1 tapi tetap menahan tinggi
+            page2.style.display = "none";
+            page3.style.display = "block";
+        }
+
+        currentPage = targetPage;
+        isAnimating = false;
+    }, 800);
+}
+
+function togglePersonal(event) {
+    event.stopPropagation();
+    const detail = document.getElementById("personal-detail");
+    const icon = document.querySelector(".mini-toggle i");
+
+    detail.classList.toggle("show");
+    icon.style.transform = detail.classList.contains("show") ? "rotate(180deg)" : "rotate(0deg)";
+}
+</script>
+</body>
+</html>
