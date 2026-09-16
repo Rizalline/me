@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - Rizal Efendi</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <style>
         :root {
             --dark-blue: #1a3047;
@@ -38,55 +39,58 @@
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
         }
 
-       /* STYLE UMUM UNTUK HALAMAN */
-.card-face {
-    width: 100%;
-    height: 100%; /* Memaksa semua halaman mengikuti tinggi container */
-    background-color: var(--bg-light);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    padding-bottom: 40px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
+        /* STYLE UMUM UNTUK HALAMAN */
+        .card-face {
+            width: 100%;
+            height: 100%;
+            /* Memaksa semua halaman mengikuti tinggi container */
+            background-color: var(--bg-light);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            padding-bottom: 40px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-/* HALAMAN 1 (Penahan Tinggi Utama) */
-.card-front {
-    position: relative; /* Selalu relative untuk mengunci tinggi kartu */
-    transform: rotateY(0deg);
-}
+        /* HALAMAN 1 (Penahan Tinggi Utama) */
+        .card-front {
+            position: relative;
+            /* Selalu relative untuk mengunci tinggi kartu */
+            transform: rotateY(0deg);
+        }
 
         /* HALAMAN BELAKANG (HAL 2) */
-.card-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: rotateY(180deg);
-        display: none;
-}
+        .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(180deg);
+            display: none;
+        }
 
-/* HALAMAN 3 */
-.card-page-3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: rotateY(360deg);
-    display: none;
-}
+        /* HALAMAN 3 */
+        .card-page-3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(360deg);
+            display: none;
+        }
 
         /* --- MOTIF BATIK TRADISIONAL --- */
-        header, .white-box {
+        header,
+        .white-box {
             position: relative;
             z-index: 2;
         }
@@ -100,17 +104,21 @@
         }
 
         .batik-motif.top-right {
-            top: 0; right: 0;
-            width: 320px; height: 320px;
-            -webkit-mask-image: radial-gradient(circle at top right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
-            mask-image: radial-gradient(circle at top right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+            top: 0;
+            right: 0;
+            width: 320px;
+            height: 320px;
+            -webkit-mask-image: radial-gradient(circle at top right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
+            mask-image: radial-gradient(circle at top right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
         }
 
         .batik-motif.bottom-right {
-            bottom: 0; right: 0;
-            width: 280px; height: 280px;
-            -webkit-mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
-            mask-image: radial-gradient(circle at bottom right, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+            bottom: 0;
+            right: 0;
+            width: 280px;
+            height: 280px;
+            -webkit-mask-image: radial-gradient(circle at bottom right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
+            mask-image: radial-gradient(circle at bottom right, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
         }
 
         /* STYLE TOMBOL SELOTIP KANAN */
@@ -120,7 +128,7 @@
             height: 90px;
             background: var(--tape-color);
             backdrop-filter: blur(1px);
-            box-shadow: -3px 4px 10px rgba(0,0,0,0.12), inset 0 0 5px rgba(255,255,255,0.6);
+            box-shadow: -3px 4px 10px rgba(0, 0, 0, 0.12), inset 0 0 5px rgba(255, 255, 255, 0.6);
             cursor: pointer;
             z-index: 100;
             display: flex;
@@ -131,32 +139,43 @@
         }
 
         /* Penyesuaian Sisi Kanan Visual untuk Semua Halaman */
-.card-front .tape-button,
-.card-back .tape-button,
-.card-page-3 .tape-button {
-    right: -25px;
-    left: auto;
-}
+        .card-front .tape-button,
+        .card-back .tape-button,
+        .card-page-3 .tape-button {
+            right: -25px;
+            left: auto;
+        }
 
         .card-back .tape-button {
-            left: -25px; /* Karena terbalik 180 deg, left di CSS akan tampil di kanan visual */
+            left: -25px;
+            /* Karena terbalik 180 deg, left di CSS akan tampil di kanan visual */
         }
 
         /* Posisi Vertikal Bertingkat agar tidak bertumpuk */
-        .tape-pos-1 { top: 180px; }
-        .tape-pos-2 { top: 290px; }
+        .tape-pos-1 {
+            top: 180px;
+        }
 
-        .tape-button::before, .tape-button::after {
+        .tape-pos-2 {
+            top: 290px;
+        }
+
+        .tape-button::before,
+        .tape-button::after {
             content: '';
             position: absolute;
-            left: 0; width: 100%; height: 6px;
+            left: 0;
+            width: 100%;
+            height: 6px;
             background-repeat: repeat-x;
         }
+
         .tape-button::before {
             top: -6px;
             background-image: linear-gradient(45deg, transparent 50%, var(--tape-color) 50%), linear-gradient(-45deg, transparent 50%, var(--tape-color) 50%);
             background-size: 6px 6px;
         }
+
         .tape-button::after {
             bottom: -6px;
             background-image: linear-gradient(45deg, var(--tape-color) 50%, transparent 50%), linear-gradient(-45deg, var(--tape-color) 50%, transparent 50%);
@@ -180,8 +199,10 @@
 
         .top-decoration {
             position: absolute;
-            top: 20px; right: 20px;
-            width: 80px; height: 80px;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
             border-top: 3px solid var(--dark-blue);
             border-right: 3px solid var(--dark-blue);
             z-index: 3;
@@ -201,11 +222,13 @@
             background: #fff;
             flex-shrink: 0;
             z-index: 1;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .photo-container img {
-            width: 100%; height: 100%; object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .name-title h1 {
@@ -259,7 +282,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
         }
 
         h2 {
@@ -319,9 +342,19 @@
             width: 25px;
         }
 
-        .contact-subitem div div { font-size: 11px; font-weight: bold; }
-        .contact-subitem span { font-size: 12px; color: #666; }
-        .personal-detail.show { display: block; }
+        .contact-subitem div div {
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .contact-subitem span {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .personal-detail.show {
+            display: block;
+        }
 
         .contact-item {
             display: flex;
@@ -330,15 +363,22 @@
             gap: 15px;
         }
 
-        .contact-item > i {
+        .contact-item>i {
             font-size: 18px;
             color: var(--dark-blue);
             width: 25px;
             margin-top: 2px;
         }
 
-        .contact-info div { font-size: 11px; font-weight: bold; }
-        .contact-info span { font-size: 12px; color: #666; }
+        .contact-info div {
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .contact-info span {
+            font-size: 12px;
+            color: #666;
+        }
 
         .vertical-line-box {
             position: relative;
@@ -384,8 +424,10 @@
 
         .bottom-line {
             position: absolute;
-            bottom: 10px; right: 40px;
-            width: 150px; height: 3px;
+            bottom: 10px;
+            right: 40px;
+            width: 150px;
+            height: 3px;
             background: var(--dark-blue);
             z-index: 3;
         }
@@ -454,6 +496,229 @@
         .project-link:hover {
             text-decoration: underline;
         }
+        /* MEMBUAT KOTAK PUTIH HALAMAN 3 BISA DI-SCROLL */
+.card-page-3 .white-box {
+    max-height: 880px;
+    overflow-y: auto;
+    padding-right: 20px; /* Jarak agar isi tidak tertutup scrollbar */
+}
+
+/* DESAIN SCROLLBAR KUSTUM AGAR MOPERN & RAPI */
+.card-page-3 .white-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-page-3 .white-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.card-page-3 .white-box::-webkit-scrollbar-thumb {
+    background: var(--dark-blue);
+    border-radius: 10px;
+}
+
+.card-page-3 .white-box::-webkit-scrollbar-thumb:hover {
+    background: #0f1e2d;
+}
+
+/* CONTAINER & PERALIKAN 3D KOTAK PUTIH */
+.white-box-container {
+    perspective: 1000px;
+    margin: 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.white-box-inner {
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* KETIKA DIBALIK */
+.white-box-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+/* SISI DEPAN DAN BELAKANG KOTAK PUTIH */
+.white-box-face {
+    background: white;
+    border-radius: 30px;
+    padding: 30px 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    max-height: 950px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.white-box-front {
+    position: relative;
+    transform: rotateY(0deg);
+}
+
+.white-box-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(180deg);
+}
+
+/* HEADER & TOMBOL PEMBALIK DI DALAM KOTAK PUTIH */
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #cbd5e1;
+}
+
+.box-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* TOMBOL FLIP GAYA SELOTIP (TAPE BUTTON) */
+.flip-btn {
+    position: relative;
+    background: var(--tape-color);
+    color: var(--dark-blue);
+    border: none;
+    padding: 6px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: -2px 3px 8px rgba(0, 0, 0, 0.12), inset 0 0 5px rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 8px; /* Ruang agar gerigi kanan tidak terpotong */
+    margin-left: 8px;  /* Ruang agar gerigi kiri tidak terpotong */
+}
+
+/* EFEK GERIGI SELOTIP DI SISI KIRI & KANAN */
+.flip-btn::before,
+.flip-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    background-repeat: repeat-y;
+}
+
+/* GERIGI KIRI */
+.flip-btn::before {
+    left: -6px;
+    background-image: linear-gradient(135deg, transparent 50%, var(--tape-color) 50%), 
+                      linear-gradient(45deg, transparent 50%, var(--tape-color) 50%);
+    background-size: 6px 6px;
+}
+
+/* GERIGI KANAN */
+.flip-btn::after {
+    right: -6px;
+    background-image: linear-gradient(135deg, var(--tape-color) 50%, transparent 50%), 
+                      linear-gradient(45deg, var(--tape-color) 50%, transparent 50%);
+    background-size: 6px 6px;
+}
+
+/* EFEK HOVER */
+.flip-btn:hover {
+    background: rgba(242, 232, 213, 0.98);
+    transform: scale(1.05);
+}
+
+/* GRID PROYEK GAMBAR (SISI BELAKANG) */
+.image-project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.image-project-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease;
+}
+
+.image-project-card:hover {
+    transform: translateY(-3px);
+}
+
+.img-wrapper {
+    width: 100%;
+    height: 150px;
+    background: #eaeaea;
+    overflow: hidden;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-project-info {
+    padding: 15px;
+}
+
+.img-project-info h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin: 0 0 5px 0;
+}
+
+.img-project-info p {
+    font-size: 11px;
+    color: #555;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* SCROLLBAR CUSTOM KOTAK PUTIH */
+.white-box-face::-webkit-scrollbar {
+    width: 6px;
+}
+.white-box-face::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.white-box-face::-webkit-scrollbar-thumb {
+    background: var(--dark-blue);
+    border-radius: 10px;
+}
+
+/* PENYESUAIAN MOBILE */
+@media (max-width: 768px) {
+    .white-box-container {
+        margin: 0 20px;
+    }
+    .white-box-face {
+        padding: 20px;
+        max-height: 450px;
+    }
+    .image-project-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
         /* RESPONSIVE LAYOUT (HP) */
         @media (max-width: 768px) {
@@ -464,9 +729,16 @@
                 padding: 40px 20px 20px 20px;
             }
 
-            .photo-container { width: 200px; height: 250px; }
-            .half-line { width: 50%; margin: 0 auto 30px auto; }
-            
+            .photo-container {
+                width: 200px;
+                height: 250px;
+            }
+
+            .half-line {
+                width: 50%;
+                margin: 0 auto 30px auto;
+            }
+
             .white-box {
                 grid-template-columns: 1fr;
                 margin: 0 20px;
@@ -477,29 +749,61 @@
                 grid-template-columns: 1fr;
             }
 
-            .name-title h1 { margin-top: 20px; }
-            .top-decoration { display: none; }
+            .name-title h1 {
+                margin-top: 20px;
+            }
 
-            .batik-motif.top-right { width: 180px; height: 180px; }
-            .batik-motif.bottom-right { width: 150px; height: 150px; }
+            .top-decoration {
+                display: none;
+            }
 
-            .social-links { justify-content: center; }
+            .batik-motif.top-right {
+                width: 180px;
+                height: 180px;
+            }
+
+            .batik-motif.bottom-right {
+                width: 150px;
+                height: 150px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
 
             .card-front .tape-button,
-            .card-page-3 .tape-button { right: -10px; }
-            .card-back .tape-button { left: -10px; }
+            .card-page-3 .tape-button {
+                right: -10px;
+            }
 
-            .tape-button { height: 75px; }
-            .tape-pos-1 { top: 15px; }
-            .tape-pos-2 { top: 100px; }
+            .card-back .tape-button {
+                left: -10px;
+            }
+
+            .tape-button {
+                height: 75px;
+            }
+
+            .tape-pos-1 {
+                top: 15px;
+            }
+
+            .tape-pos-2 {
+                top: 100px;
+            }
+            .card-page-3 .white-box {
+        max-height: 420px;
+        padding-right: 10px;
+    }
         }
     </style>
 </head>
+
 <body>
 
     <div class="resume-container" id="resumeContainer">
         <div class="resume-card-inner">
-            
+
             <!-- HALAMAN 1 -->
             <div class="card-face card-front">
                 <div class="batik-motif top-right"></div>
@@ -517,12 +821,18 @@
                     </div>
                     <div class="name-title">
                         <h1>RIZAL EFENDI<br></h1>
-                        <p>-</p>
+                        <p>Web Developer</p>
                         <div class="social-links">
-                            <a href="https://github.com/username" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://linkedin.com/in/username" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="https://instagram.com/username" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://facebook.com/username" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://github.com/Rizalline" target="_blank" title="GitHub"><i
+                                    class="fa-brands fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/rizal-efendi-u270908l/" target="_blank"
+                                title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/neeuiui?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
+                                target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/rizal.ok.1253" target="_blank" title="Facebook"><i
+                                    class="fa-brands fa-facebook"></i></a>
+                            <a href="https://wa.me/+6288802689233" target="_blank" title="Whatsapp"><i
+                                    class="fa-brands fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </header>
@@ -534,7 +844,10 @@
                         <section>
                             <h2>Profil</h2>
                             <p class="profile-text">
-                                Mahasiswa Teknik Informatika yang berfokus pada bidang web development dan desain UI/UX. Memiliki minat tinggi untuk mendalami teknologi pemrograman web serta merancang antarmuka aplikasi yang fungsional dan intuitif. Berambisi untuk mengembangkan karier secara profesional sebagai web developer.
+                                Mahasiswa Teknik Informatika yang berfokus pada bidang web development dan desain UI/UX.
+                                Memiliki minat tinggi untuk mendalami teknologi pemrograman web serta merancang
+                                antarmuka aplikasi yang fungsional dan intuitif. Berambisi untuk mengembangkan karier
+                                secara profesional sebagai web developer.
                             </p>
                         </section>
 
@@ -559,7 +872,7 @@
                                                 <span>08 Agustus 2005</span>
                                             </div>
                                         </div>
-                                       <!-- HALAMAN 1  <div class="contact-subitem">
+                                        <!-- HALAMAN 1  <div class="contact-subitem">
                                             <i class="fa-solid fa-location-dot"></i>
                                             <div>
                                                 <div>Tempat Lahir</div>
@@ -628,7 +941,8 @@
                                 <div class="timeline-item">
                                     <h3>Pemrograman & Web Development:</h3>
                                     <ul class="skill-list">
-                                        <li><strong>Bahasa Pemrograman:</strong> HTML, CSS, JavaScript, PHP, Golang, Python</li>
+                                        <li><strong>Bahasa Pemrograman:</strong> HTML, CSS, JavaScript, PHP, Golang,
+                                            Python</li>
                                         <li><strong>Framework & Teknologi:</strong> Laravel, RESTful API, MySQL</li>
                                     </ul>
                                 </div>
@@ -636,7 +950,8 @@
                                     <h3>Desain & UI/UX:</h3>
                                     <ul class="skill-list">
                                         <li><strong>Software Desain:</strong> Figma, Canva, CorelDRAW</li>
-                                        <li><strong>Keahlian Desain:</strong> Wireframing, Prototyping, UI/UX Design, Tata Letak Visual</li>
+                                        <li><strong>Keahlian Desain:</strong> Wireframing, Prototyping, UI/UX Design,
+                                            Tata Letak Visual</li>
                                     </ul>
                                 </div>
                                 <div class="timeline-item">
@@ -694,33 +1009,43 @@
                                 <div class="timeline-item">
                                     <h3>IT Web Developer (Magang)</h3>
                                     <ul class="skill-list">
-                                        <li><strong>PDAM Tirta Moedal Kota Semarang<br>Januari 2026 - Maret 2026</strong></li><br>
-                                        <li>● Mengembangkan sistem informasi berbasis web untuk otomatisasi alur pelaporan internal dan pengajuan barang.</li><br>
-                                        <li>● Merancang antarmuka (UI/UX) dan alur pengalaman pengguna agar sistem intuitif, responsif, dan mudah digunakan.</li>
+                                        <li><strong>PDAM Tirta Moedal Kota Semarang<br>Januari 2026 - Maret
+                                                2026</strong></li><br>
+                                        <li>● Mengembangkan sistem informasi berbasis web untuk otomatisasi alur
+                                            pelaporan internal dan pengajuan barang.</li><br>
+                                        <li>● Merancang antarmuka (UI/UX) dan alur pengalaman pengguna agar sistem
+                                            intuitif, responsif, dan mudah digunakan.</li>
                                     </ul>
                                 </div>
                                 <div class="timeline-item">
                                     <h3>Finishing & Asisten Desain (Magang)</h3>
                                     <ul class="skill-list">
                                         <li><strong>Doriku Digital Printing<br>2022</strong></li><br>
-                                        <li>● Membantu proses penyusunan layout dan desain materi cetak sesuai kebutuhan.</li><br>
-                                        <li>● Menangani proses pengerjaan akhir (finishing) produk cetak dengan ketelitian.</li>
+                                        <li>● Membantu proses penyusunan layout dan desain materi cetak sesuai
+                                            kebutuhan.</li><br>
+                                        <li>● Menangani proses pengerjaan akhir (finishing) produk cetak dengan
+                                            ketelitian.</li>
                                     </ul>
                                 </div>
                                 <div class="timeline-item">
                                     <h3>Penyortir Paket (Daily Worker)</h3>
                                     <ul class="skill-list">
                                         <li><strong>MyRobin (Penempatan: DC Shopee Tugu) <br>2026</strong></li><br>
-                                        <li>● Mengelola dan memilah paket berdasarkan wilayah tujuan secara cepat, tepat, dan sesuai target operasional.</li><br>
-                                        <li>● Melatih ketahanan kerja, kedisiplinan waktu, serta fokus tinggi dalam lingkungan kerja cepat.</li>
+                                        <li>● Mengelola dan memilah paket berdasarkan wilayah tujuan secara cepat,
+                                            tepat, dan sesuai target operasional.</li><br>
+                                        <li>● Melatih ketahanan kerja, kedisiplinan waktu, serta fokus tinggi dalam
+                                            lingkungan kerja cepat.</li>
                                     </ul>
                                 </div>
                                 <div class="timeline-item">
                                     <h3>Publikasi, Dekorasi, & Dokumentasi (PDD)</h3>
                                     <ul class="skill-list">
-                                        <li><strong>Kuliah Kerja Nyata (KKN) <br>Juli 2026 - September 2026</strong></li><br>
-                                        <li>● Bertanggung jawab penuh atas visual branding program KKN, termasuk desain poster, konten media sosial, dan banner kegiatan.</li><br>
-                                        <li>● Mengabadikan momen serta melakukan penyuntingan foto dan video (video editing) untuk laporan dan dokumentasi publik.</li>
+                                        <li><strong>Kuliah Kerja Nyata (KKN) <br>Juli 2026 - September 2026</strong>
+                                        </li><br>
+                                        <li>● Bertanggung jawab penuh atas visual branding program KKN, termasuk desain
+                                            poster, konten media sosial, dan banner kegiatan.</li><br>
+                                        <li>● Mengabadikan momen serta melakukan penyuntingan foto dan video (video
+                                            editing) untuk laporan dan dokumentasi publik.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -734,10 +1059,14 @@
                                 <div class="timeline-item">
                                     <h3>Karakter Profesional</h3>
                                     <ul class="skill-list">
-                                        <li><strong>Berpikir Kreatif & Inovatif:</strong> Mampu mencari solusi alternatif dalam pemecahan masalah kelompok.</li>
-                                        <li><strong>Kemandirian Kerja:</strong> Mampu mengemban dan menuntaskan tugas secara mandiri dengan tanggung jawab tinggi.</li>
-                                        <li><strong>Semangat Belajar:</strong> Sangat antusias terhadap tantangan dan hal-hal baru.</li>
-                                        <li><strong>Adaptasi Cepat:</strong> Terbiasa dan luwes menyesuaikan diri dengan lingkungan baru secara proaktif.</li>
+                                        <li><strong>Berpikir Kreatif & Inovatif:</strong> Mampu mencari solusi
+                                            alternatif dalam pemecahan masalah kelompok.</li>
+                                        <li><strong>Kemandirian Kerja:</strong> Mampu mengemban dan menuntaskan tugas
+                                            secara mandiri dengan tanggung jawab tinggi.</li>
+                                        <li><strong>Semangat Belajar:</strong> Sangat antusias terhadap tantangan dan
+                                            hal-hal baru.</li>
+                                        <li><strong>Adaptasi Cepat:</strong> Terbiasa dan luwes menyesuaikan diri dengan
+                                            lingkungan baru secara proaktif.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -746,7 +1075,9 @@
                         <section style="margin-top: 20px;">
                             <h2>Visi Kerja</h2>
                             <p class="profile-text" style="margin-bottom: 0;">
-                                Berkomitmen untuk memberikan dedikasi penuh, kontribusi positif, serta memanfaatkan keterampilan literasi komputer demi mendukung kelancaran operasional administrasi dalam tim.
+                                Berkomitmen untuk memberikan dedikasi penuh dan kontribusi positif dengan memanfaatkan
+                                keahlian pengembangan web guna menciptakan solusi digital yang fungsional, intuitif, dan
+                                mendukung efisiensi tim.
                             </p>
                         </section>
                     </div>
@@ -755,54 +1086,64 @@
             </div>
 
             <!-- HALAMAN 3 -->
-            <div class="card-face card-page-3">
-                <div class="batik-motif top-right"></div>
-                <div class="batik-motif bottom-right"></div>
-                <div class="top-decoration"></div>
+<div class="card-face card-page-3">
+    <div class="batik-motif top-right"></div>
+    <div class="batik-motif bottom-right"></div>
+    <div class="top-decoration"></div>
 
-                <!-- Tombol Kanan Atas: Kembali ke Hal 2 -->
-                <div class="tape-button tape-pos-1" onclick="goToPage(2)">
-                    <div class="tape-text">Ke Hal 2</div>
+    <!-- Tombol Kanan Atas: Kembali ke Hal 2 -->
+    <div class="tape-button tape-pos-1" onclick="goToPage(2)">
+        <div class="tape-text">Ke Hal 2</div>
+    </div>
+
+    <header>
+        <div class="name-title" style="padding-left: 0;">
+            <h1 style="font-size: 38px;">PORTOFOLIO &</h1>
+            <p style="margin-top: 5px; color: var(--dark-blue);">PROYEK LAINNYA</p>
+        </div>
+    </header>
+
+    <div class="half-line"></div>
+
+    <!-- KOTAK PUTIH DENGAN EFEK FLIP -->
+    <div class="white-box-container">
+        <div class="white-box-inner" id="portfolioBoxInner">
+            
+            <!-- SISI A (DEPAN): DAFTAR TAUTAN PROYEK -->
+            <div class="white-box-face white-box-front">
+                <div class="box-header">
+                    <span class="box-badge"><i class="fa-solid fa-list"></i> Tampilan Daftar Link</span>
+                    <button class="flip-btn" onclick="flipPortfolioBox(event)">
+                        <i class="fa-solid fa-images"></i> Lihat Galeri Gambar
+                    </button>
                 </div>
-
-                <!-- Tombol Kanan Bawah: Kembali ke Hal 1 
-                <div class="tape-button tape-pos-2" onclick="goToPage(1)">
-                    <div class="tape-text">Ke Hal 1</div>
-                </div>-->
-
-                <header>
-                    <div class="name-title" style="padding-left: 0;">
-                        <h1 style="font-size: 38px;">PORTOFOLIO &</h1>
-                        <p style="margin-top: 5px; color: var(--dark-blue);">PROYEK LAINNYA</p>
-                    </div>
-                </header>
-
-                <div class="half-line"></div>
-
-                <div class="white-box" style="grid-template-columns: 1fr;">
                     <div class="project-grid">
-                        
+
                         <!-- Proyek 1 -->
                         <div class="project-card">
                             <h3 class="project-title">Website UMKM Dusun Krajan</h3>
-                            <p class="project-desc">Aplikasi web informasi pemetaan dan pengajuan pendataan UMKM di dusun krajan desa bergas kidul.</p>
+                            <p class="project-desc">Aplikasi web informasi pemetaan dan pengajuan pendataan UMKM di
+                                dusun krajan desa bergas kidul.</p>
                             <div class="tech-tags">
                                 <span class="tech-tag">HTML</span>
                                 <span class="tech-tag">CSS</span>
                                 <span class="tech-tag">JavaScript</span>
                             </div>
-                            <a href="https://kknupgris.github.io/umkm-krajan-bergaskidul/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://kknupgris.github.io/umkm-krajan-bergaskidul/" class="project-link"
+                                target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
 
                         <!-- Proyek 2 -->
                         <div class="project-card">
                             <h3 class="project-title">CatatanKu</h3>
-                            <p class="project-desc">Aplikasi catatan digital sederhana dengan fitur pencarian dan kategori.</p>
+                            <p class="project-desc">Aplikasi catatan digital sederhana dengan fitur pencarian dan
+                                kategori.</p>
                             <div class="tech-tags">
                                 <span class="tech-tag">Flutter</span>
                                 <span class="tech-tag">Dart</span>
                             </div>
-                            <a href="https://github.com/Rizalline/CatatanKu" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://github.com/Rizalline/CatatanKu" class="project-link" target="_blank">Lihat
+                                Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
 
                         <!-- Proyek 3 -->
@@ -813,7 +1154,8 @@
                                 <span class="tech-tag">Python</span>
                                 <span class="tech-tag">Streamlit</span>
                             </div>
-                            <a href="https://jelajahjatengchatbot.streamlit.app/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://jelajahjatengchatbot.streamlit.app/" class="project-link"
+                                target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
 
                         <!-- Proyek 4 -->
@@ -824,114 +1166,243 @@
                                 <span class="tech-tag">WordPress</span>
                                 <span class="tech-tag">PHP</span>
                             </div>
-                            <a href="https://bookfloo.my.id/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://bookfloo.my.id/" class="project-link" target="_blank">Lihat Proyek <i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
 
                         <!-- Proyek 5 -->
                         <div class="project-card">
                             <h3 class="project-title">SISTEM INFORMASI GEOGRAFIS</h3>
-                            <p class="project-desc">Website Visualisasi Tingkat Pelaporan Dan Penyelesaian Kasus Kejahatan Di Provinsi Jawa Tengah Tahun 2020–2024.</p>
+                            <p class="project-desc">Website Visualisasi Tingkat Pelaporan Dan Penyelesaian Kasus
+                                Kejahatan Di Provinsi Jawa Tengah Tahun 2020–2024.</p>
                             <div class="tech-tags">
                                 <span class="tech-tag">HTML</span>
                                 <span class="tech-tag">CSS</span>
                                 <span class="tech-tag">JavaScript</span>
                                 <span class="tech-tag">QGIS</span>
                             </div>
-                            <a href="https://sigqgis33.netlify.app/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://sigqgis33.netlify.app/" class="project-link" target="_blank">Lihat Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
 
                         <!-- Proyek 6 -->
                         <div class="project-card">
-                            <h3 class="project-title">SISTEM INFORMASI GEOGRAFIS</h3>
-                            <p class="project-desc">Website Visualisasi Tingkat Pelaporan Dan Penyelesaian Kasus Kejahatan Di Provinsi Jawa Tengah Tahun 2020–2024.</p>
+                            <h3 class="project-title">Overneet Store</h3>
+                            <p class="project-desc">Website topup game pilihan</p>
                             <div class="tech-tags">
                                 <span class="tech-tag">HTML</span>
                                 <span class="tech-tag">CSS</span>
                                 <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">QGIS</span>
                             </div>
-                            <a href="https://sigqgis33.netlify.app/" class="project-link" target="_blank">Lihat Proyek <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://rizalline.github.io/Overneet_store/indek" class="project-link"
+                                target="_blank">Lihat Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
 
+                        <!-- Proyek 7 -->
+                        <div class="project-card">
+                            <h3 class="project-title">Website Penilaian Pegawai</h3>
+                            <p class="project-desc">Website untuk menilai kinerja pegawai</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <a href="https://rizalline.github.io/PenilaianPegawai/" class="project-link"
+                                target="_blank">Lihat Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
 
+                        <!-- Proyek 8 -->
+                        <div class="project-card">
+                            <h3 class="project-title">Website Laporan Dokumentasi Dan Kegiatan KKL</h3>
+                            <p class="project-desc">Website untuk menampilkan laporan dokumentasi dan kegiatan selama
+                                KKL</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <a href="https://rizalline.github.io/klskdlskl/" class="project-link" target="_blank">Lihat
+                                Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 9 -->
+                        <div class="project-card">
+                            <h3 class="project-title">Website KKN UPGRIS DESA BERGAS KIDUL</h3>
+                            <p class="project-desc">Website untuk menampilkan laporan dokumentasi dan kegiatan selama
+                                KKN di Desa Bergas Kidul</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <a href="https://kknupgris.github.io/KKNUPGRIS-BERGASKIDUL/dashboard.html"
+                                class="project-link" target="_blank">Lihat Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 10 -->
+                        <div class="project-card">
+                            <h3 class="project-title">Sistem Rekomendasi Produk</h3>
+                            <p class="project-desc">Sistem rekomendasi produk berbasis konten</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+                            <a href="https://github.com/Rizalline/sistemrekomendasiproduk" class="project-link"
+                                target="_blank">Lihat Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 11 -->
+                        <div class="project-card">
+                            <h3 class="project-title">Chatbot Buku</h3>
+                            <p class="project-desc">Chatbot untuk membantu pengguna menemukan buku yang diinginkan</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Streamlit</span>
+                            </div>
+                            <a href="https://github.com/Rizalline/chatbot-buku" class="project-link"
+                                target="_blank">Lihat Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Proyek 12 -->
+                        <div class="project-card">
+                            <h3 class="project-title">SMANTUNJ E-LIBRARY</h3>
+                            <p class="project-desc">Aplikasi e-library untuk SMA Negeri 1 Tunjungan</p>
+                            <div class="tech-tags">
+                                <span class="tech-tag">SLiMS</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <a href="https://stamtunjelibrary.page.gd/" class="project-link" target="_blank">Lihat
+                                Proyek
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+</div>
                     </div>
+                <!-- SISI B (BELAKANG): GALERI PROYEK GAMBAR -->
+            <div class="white-box-face white-box-back">
+                <div class="box-header">
+                    <span class="box-badge"><i class="fa-solid fa-image"></i> Tampilan Galeri Gambar</span>
+                    <button class="flip-btn" onclick="flipPortfolioBox(event)">
+                        <i class="fa-solid fa-list-check"></i> Lihat Daftar Link
+                    </button>
                 </div>
 
-                <div class="bottom-line"></div>
+                <div class="image-project-grid">
+                    <!-- Contoh Kartu Gambar Proyek 1 -->
+                    <div class="image-project-card">
+                        <div class="img-wrapper">
+                            <img src="Poster  final project.jpeg" alt="Preview UMKM">
+                        </div>
+                        <div class="img-project-info">
+                            <h4>Website UMKM Dusun Krajan</h4>
+                            <p>Tampilan antarmuka peta interaktif UMKM Bergas Kidul.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contoh Kartu Gambar Proyek 2 -->
+                    <div class="image-project-card">
+                        <div class="img-wrapper">
+                            <img src="Tugas Photoshop Rizal Efendi 2670033.jpg" alt="Preview CatatanKu">
+                        </div>
+                        <div class="img-project-info">
+                            <h4>CatatanKu App</h4>
+                            <p>Desain UI/UX aplikasi catatan berbasis Flutter.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tambahkan kartu gambar proyek lainnya di sini -->
+                </div>
             </div>
 
         </div>
     </div>
 
-<script>
-let currentPage = 1;
-let isAnimating = false;
+    <div class="bottom-line"></div>
+</div>
 
-function goToPage(targetPage) {
-    if (currentPage === targetPage || isAnimating) return;
-    isAnimating = true;
+    <script>
+        let currentPage = 1;
+        let isAnimating = false;
 
-    const cardInner = document.querySelector('.resume-card-inner');
-    const page1 = document.querySelector('.card-front');
-    const page2 = document.querySelector('.card-back');
-    const page3 = document.querySelector('.card-page-3');
+        function goToPage(targetPage) {
+            if (currentPage === targetPage || isAnimating) return;
+            isAnimating = true;
 
-    // 1. Tampilkan halaman yang terlibat dalam animasi putar
-    if (targetPage === 1) {
-        page1.style.display = "block";
-        page1.style.visibility = "visible";
-        page2.style.display = "block";
-        page3.style.display = "none";
-        cardInner.style.transform = "rotateY(0deg)";
-    } 
-    else if (targetPage === 2) {
-        page1.style.display = "block";
-        page2.style.display = "block";
-        
-        if (currentPage === 1) {
-            page3.style.display = "none";
-        } else {
-            page3.style.display = "block";
+            const cardInner = document.querySelector('.resume-card-inner');
+            const page1 = document.querySelector('.card-front');
+            const page2 = document.querySelector('.card-back');
+            const page3 = document.querySelector('.card-page-3');
+
+            // 1. Tampilkan halaman yang terlibat dalam animasi putar
+            if (targetPage === 1) {
+                page1.style.display = "block";
+                page1.style.visibility = "visible";
+                page2.style.display = "block";
+                page3.style.display = "none";
+                cardInner.style.transform = "rotateY(0deg)";
+            }
+            else if (targetPage === 2) {
+                page1.style.display = "block";
+                page2.style.display = "block";
+
+                if (currentPage === 1) {
+                    page3.style.display = "none";
+                } else {
+                    page3.style.display = "block";
+                }
+
+                cardInner.style.transform = "rotateY(-180deg)";
+            }
+            else if (targetPage === 3) {
+                page1.style.display = "block";
+                page2.style.display = "block";
+                page3.style.display = "block";
+                cardInner.style.transform = "rotateY(-360deg)";
+            }
+
+            // 2. Kunci tampilan setelah animasi putar selesai (800ms)
+            setTimeout(() => {
+                if (targetPage === 1) {
+                    page1.style.visibility = "visible";
+                    page2.style.display = "none";
+                    page3.style.display = "none";
+                } else if (targetPage === 2) {
+                    page1.style.visibility = "hidden"; // Menyembunyikan Hal 1 tapi tetap menahan tinggi
+                    page2.style.display = "block";
+                    page3.style.display = "none";
+                } else if (targetPage === 3) {
+                    page1.style.visibility = "hidden"; // Menyembunyikan Hal 1 tapi tetap menahan tinggi
+                    page2.style.display = "none";
+                    page3.style.display = "block";
+                }
+
+                currentPage = targetPage;
+                isAnimating = false;
+            }, 800);
         }
-        
-        cardInner.style.transform = "rotateY(-180deg)";
-    } 
-    else if (targetPage === 3) {
-        page1.style.display = "block";
-        page2.style.display = "block";
-        page3.style.display = "block";
-        cardInner.style.transform = "rotateY(-360deg)";
-    }
 
-    // 2. Kunci tampilan setelah animasi putar selesai (800ms)
-    setTimeout(() => {
-        if (targetPage === 1) {
-            page1.style.visibility = "visible";
-            page2.style.display = "none";
-            page3.style.display = "none";
-        } else if (targetPage === 2) {
-            page1.style.visibility = "hidden"; // Menyembunyikan Hal 1 tapi tetap menahan tinggi
-            page2.style.display = "block";
-            page3.style.display = "none";
-        } else if (targetPage === 3) {
-            page1.style.visibility = "hidden"; // Menyembunyikan Hal 1 tapi tetap menahan tinggi
-            page2.style.display = "none";
-            page3.style.display = "block";
+        function togglePersonal(event) {
+            event.stopPropagation();
+            const detail = document.getElementById("personal-detail");
+            const icon = document.querySelector(".mini-toggle i");
+
+            detail.classList.toggle("show");
+            icon.style.transform = detail.classList.contains("show") ? "rotate(180deg)" : "rotate(0deg)";
         }
-
-        currentPage = targetPage;
-        isAnimating = false;
-    }, 800);
+        function flipPortfolioBox(event) {
+    if (event) event.stopPropagation(); // Mencegah bentrok event klik
+    const inner = document.getElementById('portfolioBoxInner');
+    inner.classList.toggle('flipped');
 }
-
-function togglePersonal(event) {
-    event.stopPropagation();
-    const detail = document.getElementById("personal-detail");
-    const icon = document.querySelector(".mini-toggle i");
-
-    detail.classList.toggle("show");
-    icon.style.transform = detail.classList.contains("show") ? "rotate(180deg)" : "rotate(0deg)";
-}
-</script>
+    </script>
 </body>
+
 </html>
